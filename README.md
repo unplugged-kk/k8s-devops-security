@@ -12,6 +12,8 @@
 
 ## NodeJS Microservice - Kubernetes Deployment -
 
+Run these steps first before running kubernetes deployment Dev stage
+
 `kubectl create deploy node-app --image unpluggedkk/node-service:v1`
 
 `kubectl expose deploy node-app --name node-service --port 5000 --type ClusterIP`
