@@ -38,6 +38,7 @@ echo ".........----------------#################._.-.-KUBERNETES-.-._.##########
 
 set -e
 
+# Commented the below code as source was not working properly
 # source /etc/lsb-release
 # if [ "$DISTRIB_RELEASE" != "20.04" ]; then
 #     echo "################################# "
@@ -221,7 +222,7 @@ kubectl get node -o wide
 
 
 echo ".........----------------#################._.-.-Java and MAVEN-.-._.#################----------------........."
-sudo apt install openjdk-8-jdk -y
+sudo apt install openjdk-11-jdk -y
 java -version
 sudo apt install -y maven
 mvn -v

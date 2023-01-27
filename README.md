@@ -1,4 +1,4 @@
-## kubernetes-devops-security
+## k8s-devops-security
 
 ## Fork and Clone this Repo
 

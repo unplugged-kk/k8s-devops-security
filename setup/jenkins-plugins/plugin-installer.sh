@@ -28,3 +28,5 @@ done < plugins.txt
 
 
 #### Check for updates/errors - http://<jenkins-url>/updateCenter
+
+#For this scriot to work the username and password should be default else change the username and password accordingly as per script
