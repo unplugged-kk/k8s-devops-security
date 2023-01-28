@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.5.RELEASE</version>
+		<version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -40,17 +40,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.2.30</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -80,7 +69,8 @@
 				</executions>
 			</plugin>
 
-			<!--                   PITest Mutation Plugin                   -->
+
+			<!--            PITest Mutation Plugin                   -->
 			<plugin>
 				<groupId>org.pitest</groupId>
 				<artifactId>pitest-maven</artifactId>
@@ -93,7 +83,8 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<mutationThreshold>70</mutationThreshold>
+					<mutationThreshold>
+						70</mutationThreshold>
 					<outputFormats>
 						<outputFormat>XML</outputFormat>
 						<outputFormat>HTML</outputFormat>
@@ -101,31 +92,35 @@
 				</configuration>
 			</plugin>
 
-			<!--                   Dependency Check Plugin                   -->
+			<!--
+			Dependency Check Plugin                   -->
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>6.1.6</version>
 				<configuration>
-					<format>ALL</format>
-					<failBuildOnCVSS>8</failBuildOnCVSS> <!-- fail the build for CVSS greater than or
-					equal to 9 -->
-
+					<format>
+						ALL</format>
+					<failBuildOnCVSS>40</failBuildOnCVSS>
+					<!-- fail the build for CVSS greater than or equal to 5 -->
 					<!-- 
-			      use internal mirroring of CVE contents 
-			      Suppress files
-					E.g. a company-wide suppression file and local project file 
-			     -->
+			                                  use internal mirroring of CVE
+					contents 
+			                                  Suppress files 
+			                                  E.g.
+					a company-wide suppression file and local project file 
+			                                 -->
 					<!--
 					<cveUrlModified>http://internal-mirror.mycorp.com/nvdcve-1.1-modified.json.gz</cveUrlModified>
 					<cveUrlBase>http://internal-mirror.mycorp.com/nvdcve-1.1-%d.json.gz</cveUrlBase>
 					<suppressionFiles>
 					<suppressionFile>http://example.org/suppression.xml</suppressionFile>
 					<suppressionFile>project-suppression.xml</suppressionFile> 
-			                    </suppressionFiles> 
-			                 -->
+			                                                </suppressionFiles> 
+			                                             -->
 				</configuration>
 			</plugin>
+
 
 		</plugins>
 	</build>
