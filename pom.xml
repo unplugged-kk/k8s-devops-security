@@ -94,7 +94,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>6.2.0</version>
+				<version>8.0.1</version>
 				<configuration>
 					<format>ALL</format>
 					<failBuildOnCVSS>8</failBuildOnCVSS> <!-- fail the build for CVSS greater than or
@@ -114,6 +114,13 @@
 			                    </suppressionFiles> 
 			                 -->
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
