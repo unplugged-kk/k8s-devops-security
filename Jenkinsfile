@@ -35,11 +35,18 @@ pipeline {
 
         }  
 
-       stage('SonarQube- SAST') {
-          steps {
-            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://34.69.15.12:9000 -Dsonar.login=sqp_a4ba17d2210b0ecb0e430695fee8838f7c4a8dc5"
+      stage('SonarQube - SAST') {
+        steps {
+          withSonarQubeEnv('SonarQube') {
+          sh "mvn sonar:sonar  -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://34.69.15.12:9000/"
           }
-        }    
+          timeout(time: 2, unit: 'MINUTES') {
+          script {
+            waitForQualityGate abortPipeline: true
+            }
+          }
+        }
+      }   
 
       stage('Docker Build and Push') {
           steps {
@@ -50,7 +57,7 @@ pipeline {
             }
           }
         }
-        
+
       stage('Kubernetes Deployment - DEV') {
           steps {
             withKubeConfig([credentialsId: 'kubeconfig']) {
