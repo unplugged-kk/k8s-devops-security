@@ -2,10 +2,10 @@
 
 
 /////// ******************************* Code for fectching Failed Stage Name ******************************* ///////
-import io.jenkins.blueocean.rest.impl.pipeline.PipelineNodeGraphVisitor
-import io.jenkins.blueocean.rest.impl.pipeline.FlowNodeWrapper
-import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
-import org.jenkinsci.plugins.workflow.actions.ErrorAction
+// import io.jenkins.blueocean.rest.impl.pipeline.PipelineNodeGraphVisitor
+// import io.jenkins.blueocean.rest.impl.pipeline.FlowNodeWrapper
+// import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
+// import org.jenkinsci.plugins.workflow.actions.ErrorAction
 
 // Get information about all stages, including the failure cases
 // Returns a list of maps: [[id, failedStageName, result, errors]]
@@ -225,27 +225,27 @@ pipeline {
           // publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'OWASP ZAP HTML Report', reportTitles: 'OWASP ZAP HTML Report'])
         
  		  //Use sendNotifications.groovy from shared library and provide current build result as parameter 
-      //sendNotification currentBuild.result
+      sendNotification currentBuild.result
         }
 
-        success {
-        	script {
-		        /* Use slackNotifier.groovy from shared library and provide current build result as parameter */  
-		        env.failedStage = "none"
-		        env.emoji = ":white_check_mark: :tada: :thumbsup_all:" 
-		        sendNotification currentBuild.result
-		      }
-        }
+      //   success {
+      //   	script {
+		  //       /* Use slackNotifier.groovy from shared library and provide current build result as parameter */  
+		  //       env.failedStage = "none"
+		  //       env.emoji = ":white_check_mark: :tada: :thumbsup_all:" 
+		  //       sendNotification currentBuild.result
+		  //     }
+      //   }
 
-	    failure {
-	    	script {
-			  //Fetch information about  failed stage
-		      def failedStages = getFailedStages( currentBuild )
-	          env.failedStage = failedStages.failedStageName
-	          env.emoji = ":x: :red_circle: :sos:"
-		      sendNotification currentBuild.result
-		    }	
-	    }
+	    // failure {
+	    // 	script {
+			//   //Fetch information about  failed stage
+		  //     def failedStages = getFailedStages( currentBuild )
+	    //       env.failedStage = failedStages.failedStageName
+	    //       env.emoji = ":x: :red_circle: :sos:"
+		  //     sendNotification currentBuild.result
+		  //   }	
+	    // }
     }  
 
      
